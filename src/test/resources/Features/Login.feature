@@ -4,6 +4,7 @@ Feature: Login Functionality
   Background:
     Given the user navigates landing page
 
+  @smoke @regression
   Scenario Outline: "<userType>" should be able to login
     When the user logs in as "<userType>"
     Then the user should see the "<userType>" email in Settings & Profile

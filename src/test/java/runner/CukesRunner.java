@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "stepDef",
         dryRun = false,
-        tags = "@wip"
+        tags = "@CreateModerator"
 )
 public class CukesRunner {
 }

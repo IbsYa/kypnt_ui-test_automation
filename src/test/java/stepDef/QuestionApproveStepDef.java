@@ -1,42 +1,32 @@
 package stepDef;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebElement;
-import pages.DashboardPage;
-import pages.QuestionApprovePage;
+import pages.ExpertPage;
 import utilities.BrowserUtils;
-import java.util.List;
 
 public class QuestionApproveStepDef {
 
-    DashboardPage dashboardPage = new DashboardPage();
-    QuestionApprovePage questionApprovePage = new QuestionApprovePage();
+    ExpertPage expertPage = new ExpertPage();
 
     @When("the user navigates to {string} menu")
-    public void the_user_navigates_to_menu(String Questions) {
-        dashboardPage.navigateToModule(Questions);
 
-    }
-    @And("the user clicks {string}")
-    public void the_User_Clicks(String questionModule) {
-
-        questionApprovePage.navigateToQuestionsModule(questionModule);
-        BrowserUtils.waitFor(3);
-    }
-
-    @When("the user click edit button on waiting approval question")
-    public void the_user_click_edit_button_on_waiting_approval_question() {
-
-        BrowserUtils.waitForVisibility(questionApprovePage.tableWhole, 5);
-        questionApprovePage.getTableWholeHeader();
-        questionApprovePage.getRow();
+    public void the_user_navigates_to_menu(String navigateModule) {
+        expertPage.navigateToModule(navigateModule);
 
     }
 
-    @When("the user clicks approve button")
-    public void the_user_clicks_approve_button() {
+    @When("the user clicks {string} edit button")
+    public void the_user_clicks_edit_button(String statusCode) {
+
+        BrowserUtils.waitForVisibility(expertPage.tableWhole, 5);
+        expertPage.clickWaitingApprovalOrPreApproval(statusCode);
+    }
+
+
+    @When("the user clicks {string} button")
+    public void the_user_clicks_button(String approveOrRejectButton) {
+       expertPage.clickApproveOrRejectButton(approveOrRejectButton);
 
     }
 
@@ -49,7 +39,6 @@ public class QuestionApproveStepDef {
     public void the_user_should_see_the_status_of_question_is_approved() {
 
     }
-
 
 
 }
